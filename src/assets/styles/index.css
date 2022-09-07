@@ -1,0 +1,90 @@
+.toolsBox{
+    position: absolute;
+    background: white;
+    padding: 5px;
+    border-radius: 15px;
+    margin-top: 1px;
+    display: grid;
+}
+.elementTools{
+    padding: 15px;
+    background-color: antiquewhite;
+}
+
+.elementTools:hover ,svg:hover{
+    background: rgb(17, 104, 167);
+    border-radius: 15px;
+    fill: white;
+
+}
+
+.elementTools:hover > svg{
+    fill: white;
+
+}
+
+body{
+    background: whitesmoke;
+    color: black;
+}
+
+#boxs{
+    margin-left: 62px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 3px solid rgb(17, 104, 167);
+    padding: 15px;
+    width: 70%;
+    border-radius: 15px;
+    margin-top:56px ;
+    min-height: 300px;
+}
+
+
+.title{
+    position: absolute;
+    color: rgb(17, 104, 167);
+    top: 25px;
+    font-size: 1.5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    left: 65px;
+}
+.titleNone{
+    border: none;
+    background:none;
+}
+
+.selected{
+    background-color: rgb(17, 104, 167);
+}
+
+.sortable-chosen{
+    background-color: rgb(17, 104, 167);
+    color: white;
+    border: 15px;
+}
+.options{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top:3px ;
+}
+
+.element{
+    height: 100%;
+    padding: 5px;
+}
+.options svg{
+    width: 25px;
+    height: 25px;
+}
+svg{
+    fill: rgb(17, 104, 167);
+}
+.options svg:hover{
+    width: 25px;
+    height: 25px;
+    color: white;
+    padding: 3px;
+}
+

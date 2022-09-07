@@ -88,3 +88,18 @@ svg{
     padding: 3px;
 }
 
+.tooltipCan{
+    position: absolute;
+    background: rgb(17, 104, 167);
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    width: 19px;
+    height: 19px;
+    text-align: center;
+    color: white;
+    left: 32px;
+    top: 8px;
+    line-height: 10px;
+}
+

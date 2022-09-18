@@ -22,7 +22,13 @@
     fill: white;
 
 }
+.space{
+height:auto !important;
+}
+.space:hover{
+    background: #000;
 
+}
 body{
     background: whitesmoke;
     color: black;
@@ -54,14 +60,10 @@ body{
     background:none;
 }
 
-.selected{
-    background-color: rgb(17, 104, 167);
-}
+
 
 .sortable-chosen{
-    background-color: rgb(17, 104, 167);
-    color: white;
-    border: 15px;
+    box-shadow: 5px 5px 15px;
 }
 .options{
     display: flex;
@@ -103,3 +105,6 @@ svg{
     line-height: 10px;
 }
 
+.row{
+    min-height: 16px;
+}

@@ -114,4 +114,5 @@ svg{
 
 .row{
     min-height: 16px;
+    border:  0.1px dashed black;
 }

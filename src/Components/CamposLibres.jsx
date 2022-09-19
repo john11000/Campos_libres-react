@@ -10,18 +10,24 @@ const CamposLibres = () => {
   useEffect(() => {
     setTextBox(5);
     const boxForm = document.getElementById("boxs");
+    const rows = document.querySelectorAll(".row");
+    for(let i = 0; i < rows.length; i++) {
+     Sortable.create(rows[i], {
+        group:"nested",
+        swapThreshold: 1,
+        animation: 150
+      });
+    }
     const a = Sortable.create(boxForm, {
-      group: {
-        name: "boxes",
-        pull: false,
-        put: true
-      },
+      group:"nested",
       setData: function (dataTransfer, dragEl) {
         dataTransfer.setData("Text", "");
       },
       swapThreshold: 1,
       animation: 150
     });
+
+    
   }, []);
 
   const validar = (type) => {
@@ -78,10 +84,10 @@ const CamposLibres = () => {
           <div className="col-3 my-1 element" key={idx}>
             <input
               type="text"
-              className="titleNone"
-              value={"Elemento" + (idx + 1)}
+              className="titleNone "
+              placeholder={"Elemento" + (idx + 1)}
             ></input>
-            <input type="text" value="" />
+            <input type="text"  className="form-control" />
             <div className="options">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +154,12 @@ const CamposLibres = () => {
         return (
 
           <div className="col-3 my-1 element " key={idx}>
-            <input type="date" />
+              <input
+              type="text"
+              className="titleNone"
+              value={"Fecha " + (idx + 1)}
+            ></input>
+            <input type="date" className="form-control" />
           </div>
         );
       };
@@ -204,7 +215,7 @@ const CamposLibres = () => {
           title="Añadir un salto de linea"
         >
           <p className="tooltipCan">{breakLine}</p>
-          <svg clip-rule="evenodd"   fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21 11.75c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero" /></svg>
+          <svg clipRule="evenodd"   fillRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21 11.75c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z" fillRule="nonzero" /></svg>
         </div>
         <div
           className="elementTools"
@@ -212,7 +223,7 @@ const CamposLibres = () => {
           title="Añadir un espacio en blanco"
         >
           <p className="tooltipCan">{space}</p>
-          <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21 4c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-16.5.5h15v15h-15z" fill-rule="nonzero"/></svg>
+          <svg clipRule="evenodd" fillRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21 4c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-16.5.5h15v15h-15z" fillRule="nonzero"/></svg>
         </div>
        
         <div
@@ -222,7 +233,7 @@ const CamposLibres = () => {
         >
           <p className="tooltipCan">{drp}</p>
 
-          <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m13 16.75c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm2.195-5.992 2.746 2.999c.142.154.342.243.552.243s.41-.088.553-.242l2.757-2.999c.132-.144.197-.326.197-.507 0-.684-.841-1.008-1.303-.508l-2.202 2.397-2.194-2.396c-.46-.503-1.303-.175-1.303.507 0 .18.065.362.197.506zm-2.195.992c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+          <svg clipRule="evenodd" fillRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m13 16.75c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm2.195-5.992 2.746 2.999c.142.154.342.243.552.243s.41-.088.553-.242l2.757-2.999c.132-.144.197-.326.197-.507 0-.684-.841-1.008-1.303-.508l-2.202 2.397-2.194-2.396c-.46-.503-1.303-.175-1.303.507 0 .18.065.362.197.506zm-2.195.992c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75z" fillRule="nonzero"/></svg>
         </div>
       </div>
       <span className="title">
@@ -239,21 +250,14 @@ const CamposLibres = () => {
           <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
         </svg>
       </span>
-      <div className="boxsParents">
+      <div className="boxsParents ">
         <div id="boxs" className="row">
+        <div className="row"></div>
+        <div className="row"></div>
+        <div className="row"></div>
+        <div className="row"></div>
           {renderItems}
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
-          <div className="row"></div>
+        
         </div>
       </div>
     </div>

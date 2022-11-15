@@ -75,69 +75,97 @@ const CamposLibres = () => {
     }
   };
 
+  const options=(id)=>{
+    return(
+      <div className="options" id={"op"+id}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-eye-fill"
+        viewBox="0 0 16 16"
+        onClick={()=>showNode(id)}
+      >
+        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-pencil-fill"
+        viewBox="0 0 16 16"
+      >
+        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-gear-fill"
+        viewBox="0 0 16 16"
+      >
+        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-archive-fill"
+        viewBox="0 0 16 16"
+        onClick={()=>deleteNode(id)}
+      >
+        <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
+      </svg>
+    </div>
+    )
+  }
+
+  const deleteNode=(id)=>{
+    try{
+      document.getElementById("boxs").removeChild(document.getElementById("el-"+id))
+    }catch(ex){
+      console.log("Ha ocurrido un error al eliminar el nodo. el-" + id)
+    }
+  }
+
+  const showNode=(id)=>{
+    if(document.getElementById("input-"+id).style.visibility == "hidden"){
+      document.getElementById("input-"+id).style.visibility = "visible"
+
+    }else{
+      document.getElementById("input-"+id).style.visibility = "hidden"
+
+    }
+  }
+
   const renderItems = elementos.map((element, idx) => {
 
     switch (element.type) {
       case "TextBox": {
         return (
 
-          <div className="col-3 my-1 element" key={idx}>
-            <input
+          <div className="col-3 my-1 element" id={"el-"+idx} key={idx}>
+           <div id={"input-"+idx}>
+           <input
               type="text"
               className="titleNone "
               placeholder={"Elemento" + (idx + 1)}
             ></input>
             <input type="text"  className="form-control" />
-            <div className="options">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-eye-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-pencil-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-gear-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-archive-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-              </svg>
-            </div>
+           </div>
+           {options(idx)}
           </div>
         );
       };
       case "BreakLine": {
         return (
 
-          <div className="col-12 my-1 element  text-white bg-dark" key={idx}>
+          <div className="col-12 my-1 element  text-white bg-dark" id={"el-"+idx} key={idx}>
 
           </div>
         );
@@ -145,7 +173,7 @@ const CamposLibres = () => {
       case "SpaceLine": {
         return (
 
-          <div className="col-3 my-1 element space text-white" key={idx}>
+          <div className="col-3 my-1 element space text-white" id={"el-"+idx} key={idx}>
             Espacio en blanco
           </div>
         );
@@ -153,20 +181,21 @@ const CamposLibres = () => {
       case "date": {
         return (
 
-          <div className="col-3 my-1 element " key={idx}>
+          <div className="col-3 my-1 element " id={"el-"+idx} key={idx}>
               <input
               type="text"
               className="titleNone"
               value={"Fecha " + (idx + 1)}
             ></input>
             <input type="date" className="form-control" />
+            {options(idx)}
           </div>
         );
       };
       case "drp": {
         return (
 
-          <div className="col-3 my-1 element  " key={idx}>
+          <div className="col-3 my-1 element  " id={"el-"+idx} key={idx}>
             <input
               type="text"
               className="titleNone"
@@ -175,6 +204,7 @@ const CamposLibres = () => {
           <select class="form-select" placeholder="opciones">
             <option></option>
           </select>
+          {options(idx)}
           </div>
         );
       };
@@ -237,7 +267,7 @@ const CamposLibres = () => {
         </div>
       </div>
       <span className="title">
-        Modelar Formulario{" "}
+      Modelar Formulario{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -252,10 +282,7 @@ const CamposLibres = () => {
       </span>
       <div className="boxsParents ">
         <div id="boxs" className="row">
-        <div className="row"></div>
-        <div className="row"></div>
-        <div className="row"></div>
-        <div className="row"></div>
+     
           {renderItems}
         
         </div>

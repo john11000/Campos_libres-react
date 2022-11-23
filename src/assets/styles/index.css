@@ -116,3 +116,11 @@ svg{
     min-height: 16px;
     border:  0.1px dashed black;
 }
+
+.c-primary{
+    color:rgb(17, 104, 167);
+}
+
+.b-primary{
+    background:rgb(17, 104, 167);
+}

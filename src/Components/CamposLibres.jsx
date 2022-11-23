@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const CamposLibres = () => {
   const [elementos, setElementos] = useState([]);
+  const [elementoEditar, setElementoEditar] = useState();
   const [textBox, setTextBox] = useState(10);
   const [breakLine, setbreakLine] = useState(10);
   const [drp, setDrp] = useState(10);
@@ -126,7 +127,9 @@ const CamposLibres = () => {
 
   const editNode = (id) => {
     document.getElementById("modalOptionsButton").click();
-    console.log(document.getElementById("el-" + id))
+    const elemento = document.getElementById("el-" + id)
+    setElementoEditar(elemento.getAttribute("type-elemento"))
+    console.log(elemento)
 
   };
   const deleteNode = (id) => {
@@ -151,14 +154,14 @@ const CamposLibres = () => {
     switch (element.type) {
       case "TextBox": {
         return (
-          <div className="col-3 my-1 element" id={"el-" + idx} key={idx}>
+          <div className="col-3 my-1 element" id={"el-" + idx} type-element={element.type} key={idx}>
             <div id={"input-" + idx}>
               <input
                 type="text"
                 className="titleNone "
                 placeholder={"Elemento" + (idx + 1)}
               ></input>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" ></input>
             </div>
             {options(idx)}
           </div>
@@ -169,6 +172,7 @@ const CamposLibres = () => {
           <div
             className="col-12 my-1 element  text-white bg-dark"
             id={"el-" + idx}
+            type-element={element.type} 
             key={idx}
           ></div>
         );
@@ -178,6 +182,7 @@ const CamposLibres = () => {
           <div
             className="col-3 my-1 element space text-white"
             id={"el-" + idx}
+            type-element={element.type} 
             key={idx}
           >
             Espacio en blanco
@@ -186,7 +191,7 @@ const CamposLibres = () => {
       }
       case "date": {
         return (
-          <div className="col-3 my-1 element " id={"el-" + idx} key={idx}>
+          <div className="col-3 my-1 element " id={"el-" + idx} type-element={element.type}  key={idx}>
             <input
               type="text"
               className="titleNone"
@@ -199,7 +204,7 @@ const CamposLibres = () => {
       }
       case "drp": {
         return (
-          <div className="col-3 my-1 element  " id={"el-" + idx} key={idx}>
+          <div className="col-3 my-1 element  " id={"el-" + idx} type-element={element.type}  key={idx}>
             <input
               type="text"
               className="titleNone"
@@ -228,13 +233,13 @@ const CamposLibres = () => {
       ></button>
 
       <div
-        className="offcanvas offcanvas-end"
+        className="offcanvas offcanvas-end "
         tabIndex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
       >
-        <div className="offcanvas-header">
-          <h5 id="offcanvasRightLabel">Anderson</h5>
+        <div className="offcanvas-header ">
+          <h5 id="offcanvasRightLabel" className="c-primary text-uppercase text-center text-muted">Editor de propiedades</h5>
           <button
             type="button"
             className="btn-close text-reset"
@@ -242,7 +247,7 @@ const CamposLibres = () => {
             aria-label="Close"
           ></button>
         </div>
-        <div className="offcanvas-body">...</div>
+        <div className="offcanvas-body b-primary"></div>
       </div>
       <div className="toolsBox" id="toolsBox">
         <div

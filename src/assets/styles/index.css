@@ -116,12 +116,12 @@ svg{
 
 
 .c-primary{
-    color:rgb(17, 104, 167);
+    color:rgb(17, 104, 167) !important;
     font-weight: bold;
 }
 
 .b-primary{
-    background:rgb(17, 104, 167);
+    background:rgb(17, 104, 167) !important;
 }
 
 .highlight{

@@ -13,7 +13,7 @@ let estadoInicial = [
   { date: [] }
 ];
 
-const CamposLibres = ({props = estadoInicial}) => {
+const CamposLibres = ({ props = estadoInicial }) => {
   const [elementos, setElementos] = useState([]);
   const [elementoEditar, setElementoEditar] = useState();
   const [elementoInicial, setElementoInicial] = useState([]);
@@ -39,9 +39,7 @@ const CamposLibres = ({props = estadoInicial}) => {
     startApp();
   }, [0]);
 
-
-
-  const traerData = async()=>{
+  const traerData = async () => {
     const res = await obtenerCamposLibres();
     res.map((el) => {
       switch (el.TIPODECAMPO_CAMPOSLIBRES) {
@@ -60,41 +58,41 @@ const CamposLibres = ({props = estadoInicial}) => {
         case "Documento":
           {
             el.TIPODECAMPO_CAMPOSLIBRES = "textBox";
-  
+
             estadoInicial[2].documento.push(el);
           }
           break;
         case "Numero":
           {
             el.TIPODECAMPO_CAMPOSLIBRES = "numero";
-  
+
             estadoInicial[3].numero.push(el);
           }
           break;
         case "Lista Desplegable":
           {
             el.TIPODECAMPO_CAMPOSLIBRES = "drp";
-  
+
             estadoInicial[4].drp.push(el);
           }
           break;
         case "Si/No":
           {
             el.TIPODECAMPO_CAMPOSLIBRES = "check";
-  
+
             estadoInicial[5].check.push(el);
           }
           break;
         case "Fecha":
           {
             el.TIPODECAMPO_CAMPOSLIBRES = "date";
-  
+
             estadoInicial[6].date.push(el);
           }
           break;
       }
     });
-   
+
     document.getElementById("boxs").innerHTML = template;
     document
       .querySelectorAll("#boxs svg")
@@ -108,7 +106,7 @@ const CamposLibres = ({props = estadoInicial}) => {
     let memoCountAcum = 0;
     let documentCountAcum = 0;
     let numeroCountAcum = 0;
-   
+
     for (
       let i = 0;
       i < document.getElementById("boxs").childElementCount;
@@ -151,21 +149,21 @@ const CamposLibres = ({props = estadoInicial}) => {
           .split("-")[1]
       );
     }
-  setElementosDisponibles(estadoInicial)
-  setTextBox(elementosDisponibles[0].textBox.length - TextBoxCountAcum);
-  setMemo(elementosDisponibles[1].memo.length - memoCountAcum);
-  setDocumento(elementosDisponibles[2].documento.length - documentCountAcum);
-  setnumero(elementosDisponibles[3].numero.length -numeroCountAcum);
-  setDrp(elementosDisponibles[4].drp.length - dropDownCountAcum);
-  setCheck(elementosDisponibles[5].check.length - checkCountAcum);
-  setDate(elementosDisponibles[6].date.length - dateCountAcum);
-  }
-  
-  const valueSaveState=()=>{
-    document.querySelectorAll(".titleNone").forEach(input=>{
-      input.setAttribute("value",input.value)
-    })
-  }
+    setElementosDisponibles(estadoInicial);
+    setTextBox(elementosDisponibles[0].textBox.length - TextBoxCountAcum);
+    setMemo(elementosDisponibles[1].memo.length - memoCountAcum);
+    setDocumento(elementosDisponibles[2].documento.length - documentCountAcum);
+    setnumero(elementosDisponibles[3].numero.length - numeroCountAcum);
+    setDrp(elementosDisponibles[4].drp.length - dropDownCountAcum);
+    setCheck(elementosDisponibles[5].check.length - checkCountAcum);
+    setDate(elementosDisponibles[6].date.length - dateCountAcum);
+  };
+
+  const valueSaveState = () => {
+    document.querySelectorAll(".titleNone").forEach((input) => {
+      input.setAttribute("value", input.value);
+    });
+  };
   const sortableConfig = () => {
     const boxForm = document.getElementById("boxs");
     const a = Sortable.create(boxForm, {
@@ -177,12 +175,11 @@ const CamposLibres = ({props = estadoInicial}) => {
       filter: ".filtered",
       easing: "cubic-bezier(1, 0, 0, 1)",
       dataIdAttr: "id",
-      delay: 0,
+      delay: 0
     });
     window.a = a;
     setSortable(a);
   };
-
 
   const startApp = () => {
     sortableConfig();
@@ -219,13 +216,12 @@ const CamposLibres = ({props = estadoInicial}) => {
     }
   };
 
-
   const validar = (type) => {
     switch (type) {
       case "TextBox":
         {
           if (!textBox <= 0) {
-            elementos.push(elementosDisponibles[0].textBox[textBox -1]);
+            elementos.push(elementosDisponibles[0].textBox[textBox - 1]);
             setTextBox(textBox - 1);
           }
         }
@@ -249,7 +245,7 @@ const CamposLibres = ({props = estadoInicial}) => {
       case "date":
         {
           if (!date <= 0) {
-            elementos.push(elementosDisponibles[6].date[date -1]);
+            elementos.push(elementosDisponibles[6].date[date - 1]);
             setDate(date - 1);
           }
         }
@@ -257,7 +253,7 @@ const CamposLibres = ({props = estadoInicial}) => {
       case "drp":
         {
           if (!drp <= 0) {
-            elementos.push(elementosDisponibles[4].drp[drp -1]);
+            elementos.push(elementosDisponibles[4].drp[drp - 1]);
             setDrp(drp - 1);
           }
         }
@@ -265,7 +261,7 @@ const CamposLibres = ({props = estadoInicial}) => {
       case "check":
         {
           if (!check <= 0) {
-            elementos.push(elementosDisponibles[5].check[check -1]);
+            elementos.push(elementosDisponibles[5].check[check - 1]);
             setCheck(check - 1);
           }
         }
@@ -273,7 +269,7 @@ const CamposLibres = ({props = estadoInicial}) => {
       case "memo":
         {
           if (!memo <= 0) {
-            elementos.push(elementosDisponibles[1].memo[memo -1]);
+            elementos.push(elementosDisponibles[1].memo[memo - 1]);
             setMemo(memo - 1);
           }
         }
@@ -281,12 +277,22 @@ const CamposLibres = ({props = estadoInicial}) => {
       case "documento":
         {
           if (!documento <= 0) {
-            elementos.push(elementosDisponibles[2].documento[documento -1]);
+            elementos.push(elementosDisponibles[2].documento[documento - 1]);
             setDocumento(documento - 1);
           }
         }
         break;
-    }
+       case "numero":
+      {
+        if (!numero <= 0) {
+          elementos.push(elementosDisponibles[3].numero[numero - 1]);
+          setDocumento(numero - 1);
+        }
+      }
+      break;
+      }
+     
+      
   };
 
   const options = (id, op = "all") => {
@@ -455,7 +461,7 @@ const CamposLibres = ({props = estadoInicial}) => {
     console.log(id);
   };
 
-  const saveTemplate = async() => {
+  const saveTemplate = async () => {
     valueSaveState();
     localStorage.setItem(
       "plantilla",
@@ -493,63 +499,96 @@ const CamposLibres = ({props = estadoInicial}) => {
     document.getElementById("btnCloseEditProperties").click();
   };
 
-
   window.obligatorio = (el) => {
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
     elemento.querySelector(".value").classList.toggle("obligatorio");
-  }
+  };
 
-  window.longitud =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    elemento.querySelector(".value").setAttribute("maxlength",el.target.value);
-  }
+  window.longitud = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    elemento.querySelector(".value").setAttribute("maxlength", el.target.value);
+  };
 
-  window.padding =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
+  window.padding = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
     elemento.querySelector(".value").style.padding = el.target.value + "px";
-  }
+  };
 
-  window.margin =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
+  window.margin = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
     elemento.querySelector(".value").style.margin = el.target.value + "px";
-  }
+  };
 
-  window.fondo =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
+  window.fondo = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
     elemento.style.background = el.target.value;
-  }
+  };
 
-  window.controlBorder =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    elemento.querySelector(".value").style.border = "1px solid " +  el.target.value;
-  }
+  window.controlBorder = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    elemento.querySelector(".value").style.border =
+      "1px solid " + el.target.value;
+  };
 
-  window.controlFondo =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    elemento.querySelector(".value").style.background = el.target.value ;
-  }
+  window.controlFondo = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    elemento.querySelector(".value").style.background = el.target.value;
+  };
 
-  window.letrafondo =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    elemento.querySelector(".value").style.background = el.target.value ;
-  }
+  window.letrafondo = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    elemento.querySelector(".value").style.background = el.target.value;
+  };
 
-  window.letraPosicion =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    switch(el.target.selectedIndex){
-      case 0 :elemento.querySelector(".value").style.textAlign = "left";break;
-      case 1 :elemento.querySelector(".value").style.textAlign = "center";break;
-      case 2 :elemento.querySelector(".value").style.textAlign = "rigth";break;
+  window.letraPosicion = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    switch (el.target.selectedIndex) {
+      case 0:
+        elemento.querySelector(".value").style.textAlign = "left";
+        break;
+      case 1:
+        elemento.querySelector(".value").style.textAlign = "center";
+        break;
+      case 2:
+        elemento.querySelector(".value").style.textAlign = "rigth";
+        break;
     }
-  }
+  };
 
-  window.letraTamanio =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    elemento.querySelector(".value").style.fontSize = el.target.value + "px" ;
-  }
-  window.letraColor =(el)=>{
-    const elemento = document.getElementById("el-" + el.target.getAttribute("identity"));
-    elemento.querySelector(".value").style.color = el.target.value ;
+  window.letraTamanio = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    elemento.querySelector(".value").style.fontSize = el.target.value + "px";
+  };
+  window.letraColor = (el) => {
+    const elemento = document.getElementById(
+      "el-" + el.target.getAttribute("identity")
+    );
+    elemento.querySelector(".value").style.color = el.target.value;
+  };
+
+  window.guardar =()=>{
+    saveTemplate()
+    document.getElementById("modalOptionsButton").click();
   }
 
   const editNode = (id) => {
@@ -591,12 +630,20 @@ const CamposLibres = ({props = estadoInicial}) => {
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <div>
-            <p><span class="text-muted mx-3">Longitud   </span><input type="number" identity="${id}" class="w-50" min="0" value="${elemento.querySelector(".value").getAttribute("maxlength")?elemento.querySelector(".value").getAttribute("maxlength"):""}" onchange="window.longitud(event)" /></p>
+            <p><span class="text-muted mx-3">Longitud   </span><input type="number" identity="${id}" class="w-50" min="0" value="${
+      elemento.querySelector(".value").getAttribute("maxlength")
+        ? elemento.querySelector(".value").getAttribute("maxlength")
+        : ""
+    }" onchange="window.longitud(event)" /></p>
             ${filtro}
             <hr/>
             <div class="form-check form-switch">
               <span class="text-muted">Obligatorio</span>
-              <input class="form-check-input" identity="${id}" type="checkbox" id="flexSwitchCheckChecked" onchange="window.obligatorio(event)" ${elemento.querySelector(".value").classList.contains("obligatorio")?"checked": ""} >
+              <input class="form-check-input" identity="${id}" type="checkbox" id="flexSwitchCheckChecked" onchange="window.obligatorio(event)" ${
+      elemento.querySelector(".value").classList.contains("obligatorio")
+        ? "checked"
+        : ""
+    } >
             </div>
           </p>
           </div>
@@ -634,9 +681,7 @@ const CamposLibres = ({props = estadoInicial}) => {
     
   </div>
   
-  <p class="text-center my-3"><button class="btn bg-white text-uppercase c-primary text-bolder" onclick="function save (){(${saveEditElement(
-    id
-  )})}">Guardar
+  <p class="text-center my-3"><button class="btn bg-white text-uppercase c-primary text-bolder" onclick="window.guardar()">Guardar
   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="blue" class="bi bi-check-lg" viewBox="0 0 16 16">
     <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
   </svg>
@@ -717,11 +762,14 @@ const CamposLibres = ({props = estadoInicial}) => {
   };
 
   const renderItems = elementos.map((element, idx) => {
-    if(element.CAMPOSLIBRESID_CAMPOSLIBRES){
-      idx = element.CAMPOSLIBRESID_CAMPOSLIBRES ;
+    if (element.CAMPOSLIBRESID_CAMPOSLIBRES) {
+      idx = element.CAMPOSLIBRESID_CAMPOSLIBRES;
     }
-    const elemento =  element.TIPODECAMPO_CAMPOSLIBRES ?  element.TIPODECAMPO_CAMPOSLIBRES.toLowerCase() : element.type.toLowerCase();
-    
+    const elemento = element.TIPODECAMPO_CAMPOSLIBRES
+      ? element.TIPODECAMPO_CAMPOSLIBRES.toLowerCase()
+      : element.type.toLowerCase();
+
+    let NOCAMPO_CAMPOSLIBRES = element.NOCAMPO_CAMPOSLIBRES;
     switch (elemento) {
       case "TextBox".toLowerCase(): {
         return (
@@ -737,7 +785,37 @@ const CamposLibres = ({props = estadoInicial}) => {
                 className="titleNone w-100"
                 placeholder={"Caja texto " + idx}
               ></input>
-              <input type="text" id={"v-" + idx} className="form-control value"></input>
+              <input
+                type="text"
+                id={"v-" + idx}
+                name={`TEXT${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
+                className="form-control value"
+              ></input>
+            </div>
+            {options(idx)}
+          </div>
+        );
+      }
+      case "numero".toLowerCase(): {
+        return (
+          <div
+            className="col-3 my-1 element"
+            id={"el-" + idx}
+            type-element={elemento}
+            key={idx}
+          >
+            <div id={"input-" + idx} className="overflow-hidden">
+              <input
+                type="text"
+                className="titleNone w-100"
+                placeholder={"Numeros " + idx}
+              ></input>
+              <input
+                type="number"
+                id={"v-" + idx}
+                name={`TEXT${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
+                className="form-control value"
+              ></input>
             </div>
             {options(idx)}
           </div>
@@ -751,8 +829,16 @@ const CamposLibres = ({props = estadoInicial}) => {
             type-element={element.type}
             key={idx}
           >
-          <input type="text" className="titleNone form-control b-primary text-white" id={"v-" + idx} style={{"border":"none","height":"22px"}} placeholder="!Escribe un titulo aqui!"></input>
-            <div  style={{"width":"250px", "position":"absolute"}}>{options(idx, [false, false, true, true])}</div>
+            <input
+              type="text"
+              className="titleNone form-control b-primary text-white"
+              id={"v-" + idx}
+              style={{ border: "none", height: "22px" }}
+              placeholder="!Escribe un titulo aqui!"
+            ></input>
+            <div style={{ width: "250px", position: "absolute" }}>
+              {options(idx, [false, false, true, true])}
+            </div>
           </div>
         );
       }
@@ -780,11 +866,15 @@ const CamposLibres = ({props = estadoInicial}) => {
             <div id={"input-" + idx}>
               <input
                 type="text"
-                id={"v-" + idx}
-                className="titleNone value"
+                className="titleNone"
                 placeholder={"fecha " + idx}
               ></input>
-              <input type="date" className="form-control" />
+              <input
+                type="date"
+                className="form-control value"
+                id={"v-" + idx}
+                name={`FECHA${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
+              />
             </div>
             {options(idx)}
           </div>
@@ -804,7 +894,12 @@ const CamposLibres = ({props = estadoInicial}) => {
                 className="titleNone"
                 placeholder={"drop down " + idx}
               ></input>
-              <select className="form-select value" id={"v-" + idx} placeholder="opciones">
+              <select
+                className="form-select value"
+                id={"v-" + idx}
+                placeholder="opciones"
+                name={`NOMLISDES${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
+              >
                 <option></option>
               </select>
             </div>
@@ -831,6 +926,7 @@ const CamposLibres = ({props = estadoInicial}) => {
                   className="form-check-input value"
                   type="checkbox"
                   id={"check-" + idx}
+                  name={`CHK${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
                   defaultChecked
                 />
               </div>
@@ -853,7 +949,12 @@ const CamposLibres = ({props = estadoInicial}) => {
                 className="titleNone w-100"
                 placeholder={"memo" + idx}
               ></input>
-              <textarea className="w-100 value" id={"memo-" + idx} resizable="true" />
+              <textarea
+                className="w-100 value"
+                id={"memo-" + idx}
+                resizable="true"
+                name={`MEMO${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
+              />
             </div>
             {options(idx)}
           </div>
@@ -874,7 +975,13 @@ const CamposLibres = ({props = estadoInicial}) => {
                 placeholder={"documento" + idx}
               ></input>
               <div className="d-flex" id={"input-" + (idx + 1)}>
-                <input type="text" className="form-control value" id={"v-" + idx}  disabled></input>
+                <input
+                  type="text"
+                  className="form-control value"
+                  id={"v-" + idx}
+                  name={`VALUEDOC${NOCAMPO_CAMPOSLIBRES}_CAMPLIBTERCE`}
+                  disabled
+                ></input>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="50"
@@ -900,7 +1007,7 @@ const CamposLibres = ({props = estadoInicial}) => {
         className="btn btn-primary"
         id="modalOptionsButton"
         type="button"
-        style={{ display: "none" }}
+        style={{ visibility: "hidden" }}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
@@ -911,6 +1018,7 @@ const CamposLibres = ({props = estadoInicial}) => {
         tabIndex="-1"
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
+        style={{visibility:"visible"}}
       >
         <div className="offcanvas-header ">
           <h5
@@ -972,6 +1080,7 @@ const CamposLibres = ({props = estadoInicial}) => {
             <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
           </svg>
         </div>
+
         <div
           className="elementTools"
           onClick={() => validar("TextBox")}
@@ -988,6 +1097,26 @@ const CamposLibres = ({props = estadoInicial}) => {
             <path d="M22 0h-20v6h1.999c0-1.174.397-3 2.001-3h4v16.874c0 1.174-.825 2.126-2 2.126h-1v2h9.999v-2h-.999c-1.174 0-2-.952-2-2.126v-16.874h4c1.649 0 2.02 1.826 2.02 3h1.98v-6z" />
           </svg>
         </div>
+
+        <div
+          className="elementTools"
+          onClick={() => validar("numero")}
+          title="Añadir un caja de tipo numero"
+        >
+          <p className="tooltipCan">{numero}</p>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            className="bi bi-123"
+            viewBox="0 0 16 16"
+          >
+            <path d="M2.873 11.297V4.142H1.699L0 5.379v1.137l1.64-1.18h.06v5.961h1.174Zm3.213-5.09v-.063c0-.618.44-1.169 1.196-1.169.676 0 1.174.44 1.174 1.106 0 .624-.42 1.101-.807 1.526L4.99 10.553v.744h4.78v-.99H6.643v-.069L8.41 8.252c.65-.724 1.237-1.332 1.237-2.27C9.646 4.849 8.723 4 7.308 4c-1.573 0-2.36 1.064-2.36 2.15v.057h1.138Zm6.559 1.883h.786c.823 0 1.374.481 1.379 1.179.01.707-.55 1.216-1.421 1.21-.77-.005-1.326-.419-1.379-.953h-1.095c.042 1.053.938 1.918 2.464 1.918 1.478 0 2.642-.839 2.62-2.144-.02-1.143-.922-1.651-1.551-1.714v-.063c.535-.09 1.347-.66 1.326-1.678-.026-1.053-.933-1.855-2.359-1.845-1.5.005-2.317.88-2.348 1.898h1.116c.032-.498.498-.944 1.206-.944.703 0 1.206.435 1.206 1.07.005.64-.504 1.106-1.2 1.106h-.75v.96Z" />
+          </svg>
+        </div>
+
         <div
           className="elementTools"
           onClick={() => validar("check")}

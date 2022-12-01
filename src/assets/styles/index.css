@@ -47,13 +47,15 @@ body{
     color: rgb(0, 0, 0);
     border: 3px solid rgb(17, 104, 167);
     padding: 15px;
-    width: 70%;
+    width: 80%;
     border-radius: 15px;
     margin-top:56px ;
     min-height: 300px;
 }
 
-
+.w-25{
+    width:350px !important;
+}
 .title{
     position: absolute;
     color: rgb(17, 104, 167);
@@ -65,6 +67,7 @@ body{
 .titleNone{
     border: none;
     background:none;
+    width: -webkit-fill-available;
 }
 
 
@@ -86,15 +89,14 @@ body{
 .options svg{
     width: 25px;
     height: 25px;
+    padding: 3px;
 }
 svg{
     fill: rgb(17, 104, 167);
 }
 .options svg:hover{
-    width: 25px;
-    height: 25px;
+    
     color: white;
-    padding: 3px;
 }
 
 .tooltipCan{
@@ -112,15 +114,40 @@ svg{
     line-height: 10px;
 }
 
-.row{
-    min-height: 16px;
-    border:  0.1px dashed black;
-}
 
 .c-primary{
     color:rgb(17, 104, 167);
+    font-weight: bold;
 }
 
 .b-primary{
     background:rgb(17, 104, 167);
+}
+
+.highlight{
+    box-shadow: 5px 5px 15px;
+}
+
+.filtered{
+    filter: brightness(0.5);
+    background: white;
+}
+
+.svgBuscar{
+    width: 50px;
+    height: 40px;
+    background: rgb(17, 104, 167);
+    fill: white;
+    border-radius: 25px;
+    padding: 8px;
+}
+
+.form-control:focus{
+    border:none;
+    background:none;
+
+}
+
+.form-control::placeholder{
+    color: white;
 }
